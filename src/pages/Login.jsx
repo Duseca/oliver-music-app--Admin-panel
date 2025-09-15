@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
-
+import logo from "../assets/logo.png"
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -15,11 +15,12 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-xl w-full space-y-8 bg-white px-6 py-12 rounded-xl">
         <div>
           <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-blue-100">
-            <span className="text-blue-600 text-xl font-bold">F</span>
+            {/* <span className="text-blue-600 text-xl font-bold">F</span> */}
+             <img src={logo} alt='....' className='h-24 object-cover drop-shadow-lg' />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Fuzzish Admin
@@ -30,7 +31,7 @@ export default function Login() {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
+          <div className="space-y-4 mb-10">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
@@ -39,10 +40,9 @@ export default function Login() {
                 id="email"
                 name="email"
                 type="email"
-                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg  focus:outline-none focus:ring-1 focus:ring-gray-150 focus:border-gray-150 sm:text-sm"
                 placeholder="Enter your email"
               />
             </div>
@@ -56,10 +56,9 @@ export default function Login() {
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none relative block w-full px-3 py-2 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                  className="appearance-none relative block w-full px-3 py-2 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg  focus:outline-none focus:ring-1 focus:ring-gray-150 focus:border-gray-150 sm:text-sm"
                   placeholder="Enter your password"
                 />
                 <button
@@ -77,7 +76,7 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          {/* <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
                 id="remember-me"
@@ -95,7 +94,7 @@ export default function Login() {
                 Forgot your password?
               </a>
             </div>
-          </div>
+          </div> */}
 
           <div>
             <button
@@ -106,7 +105,7 @@ export default function Login() {
             </button>
           </div>
 
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
@@ -121,7 +120,7 @@ export default function Login() {
                 Password: admin123
               </p>
             </div>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>
