@@ -1,27 +1,27 @@
 import { Link, useParams } from 'react-router-dom';
-import { 
-  ArrowLeftIcon, 
-  CheckBadgeIcon, 
-  StarIcon, 
-  EyeIcon, 
+import {
+  ArrowLeftIcon,
+  CheckBadgeIcon,
+  StarIcon,
+  EyeIcon,
   TrashIcon,
   PlayIcon,
   HeartIcon,
   ShareIcon
 } from '@heroicons/react/24/outline';
 import Header from '../layouts/partials/header';
+import { recentTracks } from '../components/data';
 
 export default function ArtistView() {
   const { id } = useParams();
 
-  // In real app, you'd fetch artist data based on ID
   const artist = {
     id: id,
     name: "Artist Mike",
     email: "mike@example.com",
     phone: "+1234567890",
     verified: true,
-    followers: 15420,
+    fans: 15420,
     tracks: 23,
     joinDate: "January 15, 2024",
     lastActive: "2 hours ago",
@@ -33,43 +33,9 @@ export default function ArtistView() {
       twitter: "@artistmike_music",
       spotify: "Artist Mike"
     },
-    avatar: "https://images.pexels.com/photos/7289120/pexels-photo-7289120.jpeg?auto=compress&cs=tinysrgb&w=600"
+    avatar: "https://images.pexels.com/photos/7289120/pexels-photo-7289120.jpeg?auto=compress&cs=tinysrgb&w=600",
+    isFoundingArtist: true
   };
-
-  const recentTracks = [
-    {
-      id: 1,
-      title: "Summer Vibes",
-      plays: 12500,
-      likes: 890,
-      uploadDate: "2024-09-10",
-      status: "Published"
-    },
-    {
-      id: 2,
-      title: "Midnight Dreams",
-      plays: 8900,
-      likes: 650,
-      uploadDate: "2024-09-05",
-      status: "Published"
-    },
-    {
-      id: 3,
-      title: "City Lights",
-      plays: 5600,
-      likes: 420,
-      uploadDate: "2024-08-28",
-      status: "Published"
-    },
-    {
-      id: 4,
-      title: "Ocean Waves",
-      plays: 0,
-      likes: 0,
-      uploadDate: "2024-09-15",
-      status: "Pending"
-    }
-  ];
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -85,17 +51,8 @@ export default function ArtistView() {
       <Header header={"Artist Details"} link={'/artists'} arrow={true} />
       <div className="max-w-screen-2xl mx-auto">
         <div className="mx-4 sm:mx-9 my-5">
-          
-          {/* Back Button */}
-          {/* <div className="mb-6">
-            <Link to="/artists" className="flex items-center text-gray-600 hover:text-gray-900">
-              <ArrowLeftIcon className="w-5 h-5 mr-2" />
-              Back to Artists
-            </Link>
-          </div> */}
 
           <div className="space-y-6">
-            {/* Artist Profile Card */}
             <div className="bg-white rounded-lg shadow">
               <div className="px-6 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-between">
@@ -106,7 +63,16 @@ export default function ArtistView() {
                         Verify Artist
                       </button>
                     )}
-                    <button className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 text-sm">
+                    {!artist.isFoundingArtist ? (
+                      <button className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 text-sm">
+                        Add Founding Artist Badge
+                      </button>
+                    ) : (
+                      <button className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm">
+                        Remove Founding Artist Badge
+                      </button>
+                    )}
+                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
                       Feature Artist
                     </button>
                     <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm">
@@ -115,7 +81,7 @@ export default function ArtistView() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <div className="flex items-center mb-6">
                   <img
@@ -124,14 +90,22 @@ export default function ArtistView() {
                     className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
                   />
                   <div className="ml-6">
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                       <h3 className="text-2xl font-semibold text-gray-900">{artist.name}</h3>
                       {artist.verified && (
-                        <CheckBadgeIcon className="w-6 h-6 text-blue-500 ml-2" />
+                        <CheckBadgeIcon className="w-6 h-6 text-blue-500" />
+                      )}
+                      {artist.isFoundingArtist && (
+                        <span className="inline-flex items-center px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-semibold" title="Founding Artist">
+                          <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          Founding Artist
+                        </span>
                       )}
                     </div>
                     <p className="text-gray-600">{artist.email}</p>
-                    <p className="text-sm text-gray-500">{artist.genre} • {artist.followers.toLocaleString()} followers</p>
+                    <p className="text-sm text-gray-500">{artist.genre} • {artist.fans.toLocaleString()} fans</p>
                   </div>
                 </div>
 
@@ -188,7 +162,6 @@ export default function ArtistView() {
               </div>
             </div>
 
-            {/* Artist Stats */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
               <div className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center">
@@ -229,14 +202,13 @@ export default function ArtistView() {
                     <StarIcon className="h-6 w-6 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Followers</p>
-                    <p className="text-2xl font-semibold text-gray-900">{artist.followers.toLocaleString()}</p>
+                    <p className="text-sm font-medium text-gray-600">Fans</p>
+                    <p className="text-2xl font-semibold text-gray-900">{artist.fans.toLocaleString()}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Recent Tracks */}
             <div className="bg-white rounded-lg shadow">
               <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-lg font-medium text-gray-900">Recent Tracks</h2>
@@ -289,7 +261,6 @@ export default function ArtistView() {
               </div>
             </div>
 
-            {/* Activity History */}
             <div className="bg-white rounded-lg shadow">
               <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-lg font-medium text-gray-900">Recent Activity</h2>

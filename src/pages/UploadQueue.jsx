@@ -1,46 +1,9 @@
 import { ClockIcon, CheckCircleIcon, ExclamationCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import Header from '../layouts/partials/header';
+import { uploads } from '../components/data';
 
 export default function UploadQueue() {
-  const uploads = [
-    {
-      id: 1,
-      filename: "summer-vibes.mp3",
-      artist: "Artist Mike",
-      uploadedAt: "2024-09-15 14:30",
-      status: "processing",
-      progress: 65,
-      size: "4.2 MB"
-    },
-    {
-      id: 2,
-      filename: "cover-art.jpg",
-      artist: "DJ Sarah",
-      uploadedAt: "2024-09-15 14:25",
-      status: "completed",
-      progress: 100,
-      size: "1.8 MB"
-    },
-    {
-      id: 3,
-      filename: "explicit-lyrics.mp3",
-      artist: "Rapper Joe",
-      uploadedAt: "2024-09-15 14:20",
-      status: "flagged",
-      progress: 100,
-      size: "3.9 MB"
-    },
-    {
-      id: 4,
-      filename: "corrupted-file.mp3",
-      artist: "Unknown Artist",
-      uploadedAt: "2024-09-15 14:15",
-      status: "failed",
-      progress: 0,
-      size: "0 MB"
-    }
-  ];
-
+ 
   const getStatusIcon = (status) => {
     switch (status) {
       case 'processing': return ClockIcon;

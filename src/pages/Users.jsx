@@ -1,35 +1,10 @@
 import { Link } from 'react-router-dom';
 import { EyeIcon, NoSymbolIcon } from '@heroicons/react/24/outline';
 import Header from '../layouts/partials/header';
+import { users } from '../components/data';
 
 export default function Users() {
-  const users = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      role: "User",
-      status: "Active",
-      joinDate: "2024-01-15"
-    },
-    {
-      id: 2,
-      name: "Artist Mike",
-      email: "mike@example.com",
-      role: "Artist",
-      status: "Active",
-      joinDate: "2024-02-20"
-    },
-    {
-      id: 3,
-      name: "Spam User",
-      email: "spam@example.com",
-      role: "User",
-      status: "Suspended",
-      joinDate: "2024-03-01"
-    }
-  ];
-
+  
   const getStatusColor = (status) => {
     return status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
   };

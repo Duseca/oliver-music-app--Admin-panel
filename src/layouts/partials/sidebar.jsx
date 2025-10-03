@@ -11,6 +11,7 @@ import {
   DocumentTextIcon,
   ExclamationTriangleIcon,
   ChartBarIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline';
 import { PiPlaylist } from 'react-icons/pi';
 
@@ -94,6 +95,19 @@ export default function Sidebar() {
                   <span className="flex-1 ml-3 whitespace-nowrap">Artists</span>
                 </NavLink>
               </li>
+              <li onClick={() => handleTabClick('fans')}>
+                <NavLink
+                  to="/fans"
+                  className={({ isActive, isPending }) =>
+                    isActive ? "flex items-center py-2 px-5 rounded-lg bg-gray-150 drop-shadow text-gray-50 font-semibold"
+                      :
+                      "flex items-center py-2 px-5 text-gray-600 rounded-lg hover:bg-gray-150/10 drop-shadow hover:text-gray-150 hover:font-medium outline-none"
+                  }
+                >
+                  <UserIcon className="w-5 h-5 mr-3" />
+                  <span className="flex-1 ml-3 whitespace-nowrap">Fans</span>
+                </NavLink>
+              </li>
               <li onClick={() => handleTabClick('dashboard')}>
                 <NavLink
                   to="/genres"
@@ -146,7 +160,7 @@ export default function Sidebar() {
                   <span className="flex-1 ml-3 whitespace-nowrap">Analytics</span>
                 </NavLink>
               </li>
-              <li onClick={() => handleTabClick('dashboard')}>
+              {/* <li onClick={() => handleTabClick('dashboard')}>
                 <NavLink
                   to="/faqs"
                   className={({ isActive, isPending }) =>
@@ -158,22 +172,20 @@ export default function Sidebar() {
                   <BsPersonVcard className="w-5 h-5 mr-3" />
                   <span className="flex-1 ml-3 whitespace-nowrap">FAQs</span>
                 </NavLink>
-              </li>
-              {/* <li onClick={() => handleTabClick('dashboard')}>
-                <NavLink
-                  to='/feedback'
-                  className={({ isActive, isPending }) => {
-                    return (
-                      isActive ? "flex items-center py-2 px-5 rounded-lg bg-gray-150 drop-shadow text-gray-50 font-semibold"
-                        :
-                        "flex items-center py-2 px-5 text-gray-600 rounded-lg hover:bg-gray-150/10 drop-shadow hover:text-gray-150 hover:font-medium outline-none"
-                    )
-                  }}
-                >
-                  <MdOutlineReviews />
-                  <span className="flex-1 ml-3 whitespace-nowrap">Rating & Feedback</span>
-                </NavLink>
               </li> */}
+              <li onClick={() => handleTabClick('updates')}>
+                <NavLink
+                  to="/updates"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center py-2 px-5 rounded-lg bg-gray-150 drop-shadow text-gray-50 font-semibold"
+                      : "flex items-center py-2 px-5 text-gray-600 rounded-lg hover:bg-gray-150/10 drop-shadow hover:text-gray-150 hover:font-medium outline-none"
+                  }
+                >
+                  <DocumentTextIcon className="w-5 h-5 mr-3" />
+                  <span className="flex-1 ml-3 whitespace-nowrap">Updates</span>
+                </NavLink>
+              </li>
               <li onClick={() => handleTabClick('dashboard')}>
                 <NavLink
                   to="/content"
